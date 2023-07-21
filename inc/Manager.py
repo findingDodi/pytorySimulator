@@ -2,6 +2,10 @@ import pygame
 
 import conf
 from .GameLogic import GameLogic
+from .BuildingFactory import BuildingFactory
+
+from pygameFpsCounter.FpsCounterSlim import FpsCounterSlim
+from pygameFpsCounter.FpsCounterMax import FpsCounterMax
 
 
 class Manager:
@@ -16,10 +20,16 @@ class Manager:
         self.background_rect = pygame.Rect(0, 0, self.screen_width, self.screen_height)
 
         self.game_logic = GameLogic()
+        self.fps_counter = None
 
     def render_buildings(self):
+        font = pygame.font.SysFont("MS Comic Sans,Comic Neue", 30)
         for building in self.game_logic.buildings:
             pygame.draw.rect(self.screen, building.color, building.get_rect())
+            if type(building) is BuildingFactory:
+                factory: BuildingFactory = building
+                text_color = (factory.color[0]/2, factory.color[1]/2, factory.color[2]/2)
+                self.screen.blit(font.render(str(factory), False, text_color), factory.get_position())
 
     def render_vehicles(self):
         for vehicle in self.game_logic.vehicles:
@@ -33,6 +43,7 @@ class Manager:
         clock = pygame.time.Clock()
         self.game_is_running = True
 
+        self.fps_counter = FpsCounterSlim(self.screen)
         self.game_logic.initialize_game_field()
 
         while self.game_is_running:
@@ -49,9 +60,11 @@ class Manager:
                     else:
                         pass
 
-            self.game_logic.game_tick()
+            for i in range(10):
+                self.game_logic.game_tick()
 
             self.render_buildings()
             self.render_vehicles()
+            self.fps_counter.render_fps()
             # final draw
             pygame.display.flip()

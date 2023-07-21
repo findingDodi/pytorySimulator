@@ -3,6 +3,9 @@ import random
 from .BuildingBase import BuildingBase
 from .BuildingFactory import BuildingFactory
 from .BuildingParkingLot import BuildingParkingLot
+from .ResourceCoal import ResourceCoal
+from .ResourceIron import ResourceIron
+from .ResourceSteelPlate import ResourceSteelPlate
 from .VehicleTruck import VehicleTruck
 
 
@@ -13,8 +16,9 @@ class GameLogic:
         self.vehicles: list[VehicleTruck] = []
 
     def initialize_game_field(self):
-        for i in range(5):
-            current_factory = BuildingFactory()
+        factory_types = [ResourceCoal, ResourceCoal, ResourceIron, ResourceSteelPlate]
+        for i, factory_type in enumerate(factory_types):
+            current_factory = BuildingFactory(factory_type)
             current_factory.set_position((i + 1) * 100, (i + 1) * 100)
             self.buildings.append(current_factory)
 

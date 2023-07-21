@@ -45,7 +45,7 @@ class VehicleTruck:
             return
 
         if (self.position_x, self.position_y) == (self.destination.position_x, self.destination.position_y):
-            print("You arrived at your destination!", self.id)
+            # print("You arrived at your destination!", self.id)
             self.destination = None
             return
 

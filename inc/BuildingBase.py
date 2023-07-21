@@ -21,5 +21,8 @@ class BuildingBase:
         self.position_x = x
         self.position_y = y
 
+    def get_position(self):
+        return (self.position_x, self.position_y)
+
     def get_rect(self):
         return (self.position_x, self.position_y, self.width, self.height)
