@@ -7,8 +7,8 @@ class ResourceSteelPlate(ResourceBase):
 
     NAME = "Steel Plate"
 
-    def __init__(self, stack_size=1):
-        super().__init__(stack_size)
+    def __init__(self, stacked_amount=1):
+        super().__init__(stacked_amount)
 
         self.stack_size_max = 10
         self.resources_needed = {

@@ -16,3 +16,6 @@
 - resources
   - stackable
     - stack size
+
+## TODO 
+- fix resource properties (buildings and vehicles)

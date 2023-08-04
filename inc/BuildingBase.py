@@ -26,3 +26,6 @@ class BuildingBase:
 
     def get_rect(self):
         return (self.position_x, self.position_y, self.width, self.height)
+
+    def process(self):
+        pass

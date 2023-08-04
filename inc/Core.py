@@ -60,7 +60,7 @@ class Core:
                     else:
                         pass
 
-            for i in range(10):
+            for i in range(1):
                 self.game_logic.game_tick()
 
             self.render_buildings()

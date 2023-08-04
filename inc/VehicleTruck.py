@@ -19,9 +19,29 @@ class VehicleTruck:
         self.position_x = 0
         self.position_y = 0
         self.color = (50, 100, 220)
-        self.slots = []
+        self.item_slots = []
+        self.items_max = 10
         self.speed = 1
         self.destination: BuildingBase | None = None
+
+    def add_item(self, item):
+        if len(self.item_slots) >= self.items_max:
+            return False
+
+        self.item_slots.append(item)
+        return True
+
+    def get_item(self):
+        if not self.item_slots:
+            return None
+
+        return self.item_slots.pop()
+
+    def get_payload_type(self):
+        if not self.item_slots:
+            return None
+
+        return type(self.item_slots[0])
 
     def set_position(self, x, y):
         self.position_x = x

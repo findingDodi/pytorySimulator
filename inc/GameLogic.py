@@ -32,8 +32,13 @@ class GameLogic:
             self.vehicles.append(new_vehicle_truck)
 
     def game_tick(self):
+        self.process_buildings()
         self.move_vehicles()
         self.galaxy_express()
+
+    def process_buildings(self):
+        for building in self.buildings:
+            building.process()
 
     def move_vehicles(self):
         for vehicle in self.vehicles:
