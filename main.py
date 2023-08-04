@@ -1,5 +1,5 @@
-from inc.Manager import Manager
+from inc.Core import Core
 
-my_manager = Manager()
+my_manager = Core()
 my_manager.run_game()
 

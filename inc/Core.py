@@ -8,7 +8,7 @@ from pygameFpsCounter.FpsCounterSlim import FpsCounterSlim
 from pygameFpsCounter.FpsCounterMax import FpsCounterMax
 
 
-class Manager:
+class Core:
 
     def __init__(self):
         self.screen = None
