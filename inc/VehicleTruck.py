@@ -1,4 +1,5 @@
 from __future__ import annotations
+import math
 
 from .BuildingBase import BuildingBase
 
@@ -82,4 +83,21 @@ class VehicleTruck:
         elif self.position_y > self.destination.position_y:
             move_y -= self.speed
 
-        self.set_position(self.position_x + move_x, self.position_y + move_y)
+        vector_length = math.sqrt(move_x ** 2 + move_y ** 2)
+        move_x /= vector_length
+        move_y /= vector_length
+
+        target_position_x = self.position_x + move_x
+        target_position_y = self.position_y + move_y
+
+        if self.position_x < self.destination.position_x:
+            target_position_x = min(target_position_x, self.destination.position_x)
+        elif self.position_x > self.destination.position_x:
+            target_position_x = max(target_position_x, self.destination.position_x)
+
+        if self.position_y < self.destination.position_y:
+            target_position_y = min(target_position_y, self.destination.position_y)
+        elif self.position_y > self.destination.position_y:
+            target_position_y = max(target_position_y, self.destination.position_y)
+
+        self.set_position(target_position_x, target_position_y)
