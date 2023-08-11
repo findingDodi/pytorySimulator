@@ -22,7 +22,7 @@ class VehicleTruck:
         self.color = (50, 100, 220)
         self.item_slots = []
         self.items_max = 10
-        self.speed = 1
+        self.speed = 5
         self.destination: BuildingBase | None = None
 
     def add_item(self, item):
@@ -74,18 +74,18 @@ class VehicleTruck:
         move_y = 0
 
         if self.position_x < self.destination.position_x:
-            move_x += self.speed
+            move_x += 1
         elif self.position_x > self.destination.position_x:
-            move_x -= self.speed
+            move_x -= 1
 
         if self.position_y < self.destination.position_y:
-            move_y += self.speed
+            move_y += 1
         elif self.position_y > self.destination.position_y:
-            move_y -= self.speed
+            move_y -= 1
 
         vector_length = math.sqrt(move_x ** 2 + move_y ** 2)
-        move_x /= vector_length
-        move_y /= vector_length
+        move_x *= self.speed / vector_length
+        move_y *= self.speed / vector_length
 
         target_position_x = self.position_x + move_x
         target_position_y = self.position_y + move_y
