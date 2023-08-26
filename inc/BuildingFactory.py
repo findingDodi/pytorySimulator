@@ -16,6 +16,8 @@ class BuildingFactory(BuildingBase):
         self.item_slots: list[ResourceBase] = []
         self.items_max = 10
 
+        self.item_stocks = {}
+
         self.production_task: Type[ResourceBase] = production_task
         self._to_produce = 0
 
@@ -26,6 +28,9 @@ class BuildingFactory(BuildingBase):
         return self.__str__()
 
     def process(self):
+        if self.production_task.needs_resources():
+            return
+
         self._to_produce += 1.0 / self.production_task.CRAFTING_TIME
         left_over = self._to_produce % 1
         self.__add_to_stack(int(self._to_produce - left_over))

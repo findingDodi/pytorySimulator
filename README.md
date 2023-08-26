@@ -19,3 +19,19 @@
 
 ## TODO 
 - fix resource properties (buildings and vehicles)
+
+## stock
+- item_stocks = {}
+  - in den item_stocks -> stock für versch. resources
+- def add_to_item_stocks
+  - items werden zum jeweiligen item stock hinzugefügt
+- process 
+  - muss abfragen, ob externe Ressourcen benötigt werden
+  - wenn ja
+      - prüfen ob items in item_stocks vorhanden
+          - nicht da ?
+              - items anfragen (über vehicle)
+          - wenn da
+              - weiter mit process (ressourcen verarbeiten)
+  - wenn nein
+      - weiter mit process

@@ -4,11 +4,15 @@ class ResourceBase:
 
     NAME = "None"
     CRAFTING_TIME = 1
+    RESOURCES_NEEDED = {}
+
+    @classmethod
+    def needs_resources(cls):
+        return len(cls.RESOURCES_NEEDED) > 0
 
     def __init__(self, stacked_amount=1):
         self.stacked_amount = stacked_amount
         self.stack_size_max = 20
-        self.resources_needed = {}
 
     def is_full(self):
         return self.stacked_amount < self.stack_size_max
