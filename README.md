@@ -35,3 +35,12 @@
               - weiter mit process (ressourcen verarbeiten)
   - wenn nein
       - weiter mit process
+
+## vehicle logic
+- task list 
+  - if empty
+    - wait in parking lot
+- unload / onload items
+- drive to factories
+- currently random destinations
+  
