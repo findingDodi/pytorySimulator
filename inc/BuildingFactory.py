@@ -31,25 +31,24 @@ class BuildingFactory(BuildingBase):
         self.__add_to_stack(int(self._to_produce - left_over))
         self._to_produce = left_over
 
+    def is_full(self):
+        return len(self.item_slots) < self.items_max
+
     def __add_to_stack(self, amount):
-        to_distribute = amount  # 2
+        to_distribute = amount
         for i in range(len(self.item_slots)):
             item_stack = self.item_slots[i]
 
             if to_distribute <= 0:
                 break
 
-            if item_stack.stacked_amount < item_stack.stack_size_max:
-                stack_space = item_stack.stack_size_max - item_stack.stacked_amount
-                stack_difference = min(stack_space, to_distribute)
-                item_stack.stacked_amount += stack_difference
-                to_distribute -= stack_difference
-                to_distribute = max(to_distribute, 0)
+            if item_stack.is_full():
+                to_distribute = item_stack.add_to_stack(to_distribute)
 
         if to_distribute <= 0:
             return
 
-        if len(self.item_slots) < self.items_max:
+        if not self.is_full():
             # TODO: fix to_distribute > stack_size_max bug
             self.item_slots.append(
                 self.production_task(to_distribute)
