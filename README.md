@@ -21,8 +21,8 @@
 - fix resource properties (buildings and vehicles)
 
 ## stock
-- item_stocks = {}
-  - in den item_stocks -> stock für versch. resources
+- input_resources = {}
+  - in den input_resources -> list für versch. resources
 - def add_to_item_stocks
   - items werden zum jeweiligen item stock hinzugefügt
 - process 
