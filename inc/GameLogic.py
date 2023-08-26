@@ -25,7 +25,7 @@ class GameLogic:
         new_parking_lot = BuildingParkingLot()
         self.buildings.append(new_parking_lot)
 
-        for i in range(2):
+        for i in range(3):
             new_vehicle_truck = VehicleTruck()
             new_vehicle_truck.set_position(new_parking_lot.position_x, new_parking_lot.position_y)
             new_vehicle_truck.set_destination(random.choice(self.buildings))
