@@ -32,7 +32,7 @@ class BuildingFactory(BuildingBase):
         self._to_produce = left_over
 
     def is_full(self):
-        return len(self.item_slots) < self.items_max
+        return len(self.item_slots) >= self.items_max
 
     def __add_to_stack(self, amount):
         to_distribute = amount
