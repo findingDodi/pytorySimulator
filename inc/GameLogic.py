@@ -7,6 +7,7 @@ from .ResourceCoal import ResourceCoal
 from .ResourceIron import ResourceIron
 from .ResourceSteelPlate import ResourceSteelPlate
 from .VehicleTruck import VehicleTruck
+from .VehicleFactory import VehicleFactory
 
 
 class GameLogic:
@@ -25,11 +26,20 @@ class GameLogic:
         new_parking_lot = BuildingParkingLot()
         self.buildings.append(new_parking_lot)
 
+        self.vehicles += VehicleFactory().create_vehicles(
+            new_parking_lot.position_x,
+            new_parking_lot.position_y,
+            self.buildings,
+            3
+        )
+
+        '''
         for i in range(3):
             new_vehicle_truck = VehicleTruck()
             new_vehicle_truck.set_position(new_parking_lot.position_x, new_parking_lot.position_y)
             new_vehicle_truck.set_destination(random.choice(self.buildings))
             self.vehicles.append(new_vehicle_truck)
+        '''
 
     def game_tick(self):
         self.process_buildings()
