@@ -12,13 +12,23 @@ class VehicleFactory:
         return new_vehicle_truck
 
     @staticmethod
-    def create_vehicles(position_x, position_y, buildings, amount):
-        vehicles = []
+    def create_vehicles_yield(position_x, position_y, buildings, amount):
         for i in range(amount):
-            vehicles.append(VehicleFactory.create_vehicle(
+            yield VehicleFactory.create_vehicle(
                 position_x,
                 position_y,
                 random.choice(buildings)
-            ))
+            )
 
-        return vehicles
+    @staticmethod
+    def create_vehicles(position_x, position_y, buildings, amount):
+        return [VehicleFactory.create_vehicles_yield(
+            position_x,
+            position_y,
+            buildings,
+            amount
+        )]
+
+    @staticmethod
+    def create_vehicles_test(*args):
+        return [VehicleFactory.create_vehicles_yield(*args)]
